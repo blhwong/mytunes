@@ -5,10 +5,15 @@ var LibraryView = Backbone.View.extend({
 
   initialize: function() {
     this.render();
+    this.listenTo(this.collection, 'add', function() {
+      debugger;
+      this.render();
+    });
 
   },
 
   render: function() {
+    debugger;
     // to preserve event handlers on child nodes, we must call .detach() on them before overwriting with .html()
     // see http://api.jquery.com/detach/
     this.$el.children().detach();
