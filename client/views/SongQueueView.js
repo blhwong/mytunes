@@ -15,18 +15,31 @@ var SongQueueView = Backbone.View.extend({
 
   initialize: function() {
     // var a = new SongQueueEntryView();
-    _.each(this.collection.models, function(song) {
-      var a = new SongQueueEntryView(song);
-      a.render();
-    });
+    // _.each(this.collection.models, function(song) {
+    //   var a = new SongQueueEntryView(song);
+    //   a.render();
+    // });
+    this.render();
     this.listenTo(this.collection, 'add', function() {
+      this.render();
+    });
+    this.listenTo(this.collection, 'ended', function() {
+      this.render();
+    });
+    this.listenTo(this.collection, 'dequeue', function() {
       this.render();
     });
 
   },
 
   render: function() {
-    return this.$el;
+    this.$el.children().detach();
+
+    this.$el.html('<th>Song Queue</th>').append(
+      this.collection.map(function(song) {
+        return new SongQueueEntryView({model: song}).render();
+      })
+    );
   }
 
 });
