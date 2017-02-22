@@ -68,6 +68,7 @@ describe('SongQueue', function() {
 
   describe('playFirst', function() {
     it('plays the first song in the queue', function() {
+      SongModel.prototype.play.restore();
       sinon.spy(SongModel.prototype, 'play');
       var songQueue = new SongQueue(songData1);
       songQueue.playFirst();

@@ -9,7 +9,7 @@ var Songs = Backbone.Collection.extend({
       url: 'http://parse.sfm6.hackreactor.com/mytunes/classes/songs',
       type: 'GET',
       success: function(data) {
-        console.log('Success!', data);
+        // console.log('Success!', data);
         this.add(data.results);
         // debugger;
         //console.log(this);

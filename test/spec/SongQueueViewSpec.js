@@ -33,6 +33,19 @@ describe('SongQueueView', function() {
     });
     view.collection.pop();
     expect(view.render).to.have.been.called;
+    SongQueueView.prototype.render.restore();
   });
-
+  it('renders when remove event fires from the song queue collection', function() {
+    sinon.spy(SongQueueView.prototype, 'render');
+    view = new SongQueueView({collection: fakeSongs});
+    
+    view.collection.pop();
+    expect(view.render).to.have.been.called;
+  });
+  it('should have a header element after being rendered', function() {
+    view = new SongQueueView({ collection: fakeSongs });
+    debugger;
+    expect(view.$el.children().length).to.equal(3);
+    expect(view.$el.children()[0].tagName).to.equal('TH');
+  });
 });

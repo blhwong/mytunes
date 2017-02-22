@@ -19,7 +19,7 @@ var PlayerView = Backbone.View.extend({
   },
 
   render: function() {
-    debugger;
+    // debugger;
     return this.$el.attr('src', this.model ? this.model.get('url') : '');
   }
 
